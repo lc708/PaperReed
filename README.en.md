@@ -16,8 +16,8 @@ Paper Reed is an open-source macOS email client exploration focused on thoughtfu
 ## Try the prototype
 
 ```sh
-git clone https://github.com/macopc/paper-reed.git
-cd paper-reed
+git clone https://github.com/macopc/PaperReed.git
+cd PaperReed
 ```
 
 Open `design/direction.html` directly in a browser. No build or server is needed. Nothing connects to a mailbox, sends mail, installs a CLI, or launches an agent. Refreshing resets the sample state. The prototype currently uses Chinese copy.

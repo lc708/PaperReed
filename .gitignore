@@ -1,0 +1,14 @@
+# Local upstream research snapshots; provenance is tracked in research/.
+/Mailspring/
+/Zero/
+
+# Downloaded reference-site HTML and images; source URLs remain in REFERENCES.md.
+/design/references/
+
+node_modules/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+!.env.example

@@ -1,0 +1,16 @@
+✔ Mailspring actual stdio bridge forwards calls and reloads a rotated token (57.475334ms)
+✔ Mailspring registers 24 upstream mail tools (61.711167ms)
+✔ Mailspring read-only denies draft/write/send before queuing (21.213292ms)
+✔ Mailspring draft invokes sync task and waits for local completion (20.2015ms)
+✔ Mailspring disallowed default account cannot persist a draft (18.0705ms)
+✔ Mailspring archive success currently means queued, not remotely complete (18.889ms)
+✔ Mailspring send reports sent:true before any sync completion wait (14.293541ms)
+✔ Zero MCP account switch leaves ordinary mail handlers bound to initial account (8.746541ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 374.034

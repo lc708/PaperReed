@@ -1,6 +1,6 @@
 # Sources and third-party notices
 
-Original Mail Desktop repository content is licensed under GPL-3.0-only; see [LICENSE](LICENSE). This does not relicense third-party works, dependency packages or trademarks.
+Original Paper Reed repository content is licensed under GPL-3.0-only; see [LICENSE](LICENSE). This does not relicense third-party works, dependency packages or trademarks.
 
 ## Research sources
 

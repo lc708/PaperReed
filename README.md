@@ -1,10 +1,10 @@
-# Mail Desktop（暂定名）
+# Paper Reed
 
 [English](README.en.md) · [贡献指南](CONTRIBUTING.md) · [路线图](ROADMAP.md)
 
 [![Repository checks](https://github.com/macopc/mail-desktop/actions/workflows/checks.yml/badge.svg)](https://github.com/macopc/mail-desktop/actions/workflows/checks.yml)
 
-一个面向 macOS 的开源邮件客户端探索：重视阅读、写信与日常整理的品质，并让 Claude Code、Codex、OpenCode 等外部 Agent 方便地处理邮件。
+Paper Reed 是一个面向 macOS 的开源邮件客户端探索：重视阅读、写信与日常整理的品质，并让 Claude Code、Codex、OpenCode 等外部 Agent 方便地处理邮件。
 
 ## 当前状态
 
@@ -15,7 +15,7 @@
 - UI：正在迭代。当前原型与历史版本均为候选，不是验收通过的设计。
 - 技术：Mailspring、Zero 的代码研究已保存；Electron / React / TypeScript 等仅为现有候选方案。
 - 实现：目前只有使用示例数据的 HTML 交互原型，没有可用的邮件客户端、真实 CLI、邮箱授权或同步服务。
-- 开源：采用 GPL-3.0-only；项目名称暂定为 Mail Desktop。没有正式版本或可下载的客户端。
+- 开源：采用 GPL-3.0-only；项目名称已确定为 **Paper Reed**。没有正式版本或可下载的客户端。
 
 ## 阅读入口
 
@@ -67,4 +67,4 @@ python3 scripts/check.py
 
 ## 许可证与来源
 
-Copyright (C) 2026 Mail Desktop contributors. 本仓库原创内容采用 [GNU GPL v3.0 only](LICENSE)，不提供担保。上游源码、第三方素材与商标不因本仓库而改变其许可或归属，详见 [来源说明](THIRD_PARTY_NOTICES.md)。本项目与 Spark、Mailspring、Zero 及其维护方没有隶属或背书关系。
+Copyright (C) 2026 Paper Reed contributors. 本仓库原创内容采用 [GNU GPL v3.0 only](LICENSE)，不提供担保。上游源码、第三方素材与商标不因本仓库而改变其许可或归属，详见 [来源说明](THIRD_PARTY_NOTICES.md)。本项目与 Spark、Mailspring、Zero 及其维护方没有隶属或背书关系。

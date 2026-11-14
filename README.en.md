@@ -1,8 +1,8 @@
-# Mail Desktop (working title)
+# Paper Reed
 
 [中文](README.md) · [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md)
 
-An open-source macOS email client exploration focused on thoughtful reading, writing, and organization, with convenient access for external agents such as Claude Code, Codex, and OpenCode.
+Paper Reed is an open-source macOS email client exploration focused on thoughtful reading, writing, and organization, with convenient access for external agents such as Claude Code, Codex, and OpenCode.
 
 **Early exploration: the interface has not been approved, and the architecture and technology stack are undecided.** There is no installable mail client or release yet. Mailspring is a candidate, not a selected foundation.
 
@@ -39,4 +39,4 @@ Concrete design feedback, email workflow examples, and evidence-backed technolog
 
 ## License
 
-Copyright (C) 2026 Mail Desktop contributors. Original repository content is licensed under [GNU GPL v3.0 only](LICENSE), without warranty. Upstream code, third-party materials and trademarks retain their own terms and ownership; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This is an independent project, not affiliated with or endorsed by Spark, Mailspring, Zero, or their maintainers.
+Copyright (C) 2026 Paper Reed contributors. Original repository content is licensed under [GNU GPL v3.0 only](LICENSE), without warranty. Upstream code, third-party materials and trademarks retain their own terms and ownership; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This is an independent project, not affiliated with or endorsed by Spark, Mailspring, Zero, or their maintainers.

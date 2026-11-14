@@ -1,0 +1,32 @@
+# Contributing / 贡献指南
+
+欢迎中文或英文贡献。设计、架构和技术选型仍待评审；文档中的候选路线不是已批准的实施规范。
+
+## Where to help / 可以参与什么
+
+- 用具体场景指出导航、阅读、写信、整理或 Agent 交接的问题。
+- 比较技术路线：注明源码版本、实验方法、结果及尚未验证的部分。
+- 改进原型、可访问性、文档和开发体验。大型实现先开 Issue 讨论。
+
+Design feedback, workflow examples, reproducible research and small prototype improvements are welcome. Please discuss substantial implementation before starting; neither the UI nor the architecture is finalized.
+
+## Local workflow / 本地工作流
+
+1. Fork 仓库并建立描述性分支。
+2. 原型主源为 `design/direction.html`；不要分别修改 `design/pages/`。历史 `direction-v*.html` 和 `INTERFACE-v*.md` 保留为过程记录。
+3. 修改主原型后执行 `python3 design/build-previews.py`。
+4. 使用 Python 3.10+、Node.js 22+ 执行 `python3 scripts/check.py`。
+5. 界面修改请实际打开原型，检查受影响流程、键盘焦点和不同窗口宽度；附匿名截图或简短复现步骤。基础 CI 不会替你完成视觉评审。
+6. 提交 PR，说明问题、修改后的行为、验证结果和剩余限制。
+
+Edit the canonical prototype, regenerate standalone pages, run the checks, and manually inspect affected UI flows. Explain the problem, behavior change, validation and limitations in your PR. Keep unrelated changes separate.
+
+源码可行性实验需另外准备上游快照，见 [research/README.md](research/README.md)。它们不属于默认 CI。现有 25 项原型交互检查也不属于静态 CI，不能把语法检查通过写成全部交互通过。
+
+## Contribution terms / 贡献约定
+
+提交你有权分享的内容；原创贡献按本仓库 GPL-3.0-only 提供。不要求签署 CLA。复用第三方代码时保留来源、版权与许可说明，并说明与当前项目的关系。不要上传真实邮件、邮箱凭据或未匿名的个人信息。
+
+Contribute only material you have the right to share, under GPL-3.0-only for original contributions. No CLA is required. Preserve notices and provenance when incorporating third-party work. Keep real mail, credentials and personal data out of examples.
+
+遵守 [行为准则](CODE_OF_CONDUCT.md)。涉及漏洞或凭据泄露请使用 [安全报告方式](SECURITY.md)，不要提交公开 Issue。

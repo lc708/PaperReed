@@ -1,0 +1,22 @@
+name: Design or technical proposal / 设计或技术提案
+description: Improve an email workflow or investigate a candidate architecture.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem / 用户问题
+      description: Describe a concrete workflow and why the current approach falls short.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change / 建议方案
+      description: Include alternatives, evidence and tradeoffs. The UI and technology stack are not final.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation / 如何验证
+      description: What would show the proposal works? Distinguish observations from assumptions.

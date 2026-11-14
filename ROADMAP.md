@@ -1,0 +1,20 @@
+# Roadmap / 路线图
+
+当前处于探索阶段。以下是推进条件，不是发布日期承诺，也不表示技术路线已经确定。
+
+| 阶段 | 目标与完成条件 | 状态 |
+| --- | --- | --- |
+| 界面与工作流评审 | 收件、阅读、写信、整理和 Agent 入口形成一致体验；通过设计评审，补充真实工作流反馈 | 进行中，未通过 |
+| 技术路线比较 | 比较同步、存储、UI、CLI 接入与维护成本；记录选型理由、许可约束和实验限制 | 候选研究中，未定稿 |
+| 最小真实闭环 | 在选定路线后验证多账号收信、回复草稿、发送、归档与 GUI / CLI 状态一致 | 未开始 |
+| 日用可靠性 | 验证离线恢复、凭据刷新、任务失败反馈、邮件渲染隔离、可访问性与性能 | 未开始 |
+| macOS 分发 | 确定应用标识、系统支持范围、签名、公证、升级与安装流程 | 未开始 |
+| 内置 AI | 在稳定邮件操作与权限机制上增加可选摘要和写作辅助 | 后续考虑 |
+
+优先级：基础邮件体验与外部 Agent 接入优先；内置 AI 后置。暂不扩展到移动端、自建邮件服务器、团队协作平台或插件市场。
+
+## How decisions become final
+
+Design review and technical evidence inform decisions; creating a repository, merging a prototype or passing checks does not approve the product design or select a stack. Record the rationale and unresolved risks in the relevant document when a decision is accepted.
+
+The sequence is: review the interface and workflows, select the technical foundation, validate real email plus CLI operations, then address reliability and macOS distribution. Built-in AI comes later. No release date is committed.

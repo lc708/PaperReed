@@ -1,0 +1,29 @@
+name: Bug report / 问题反馈
+description: Report a reproducible problem in the prototype, scripts or docs.
+body:
+  - type: markdown
+    attributes:
+      value: "This is an early prototype, not a released mail client. Do not include real email or credentials. Report vulnerabilities privately using the Security tab."
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce / 复现步骤
+      description: Include the page or command and repository commit.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior / 预期与实际表现
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment / 环境
+      description: OS, browser and window size; Python or Node version if relevant.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence / 截图或日志
+      description: Remove personal information before sharing.

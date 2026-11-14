@@ -2,7 +2,7 @@
 
 [English](README.en.md) · [贡献指南](CONTRIBUTING.md) · [路线图](ROADMAP.md)
 
-[![Repository checks](https://github.com/macopc/mail-desktop/actions/workflows/checks.yml/badge.svg)](https://github.com/macopc/mail-desktop/actions/workflows/checks.yml)
+[![Repository checks](https://github.com/macopc/paper-reed/actions/workflows/checks.yml/badge.svg)](https://github.com/macopc/paper-reed/actions/workflows/checks.yml)
 
 Paper Reed 是一个面向 macOS 的开源邮件客户端探索：重视阅读、写信与日常整理的品质，并让 Claude Code、Codex、OpenCode 等外部 Agent 方便地处理邮件。
 
@@ -35,8 +35,8 @@ Paper Reed 是一个面向 macOS 的开源邮件客户端探索：重视阅读�
 先克隆仓库：
 
 ```sh
-git clone https://github.com/macopc/mail-desktop.git
-cd mail-desktop
+git clone https://github.com/macopc/paper-reed.git
+cd paper-reed
 ```
 
 用浏览器直接打开 `design/direction.html`，无需构建或启动服务器。全部邮件及连接状态均为演示；刷新会恢复初始状态，不会安装 CLI、唤起 Agent 或发送邮件。
@@ -55,7 +55,7 @@ python3 design/build-previews.py
 
 ## 参与贡献
 
-欢迎用中文或英文提交 [Issue](https://github.com/macopc/mail-desktop/issues/new/choose) 或 Pull Request。目前最有帮助的是具体的界面问题、真实邮件工作流，以及带证据的技术路线比较。大型实现请先讨论，避免建立在尚未确认的方案上。
+欢迎用中文或英文提交 [Issue](https://github.com/macopc/paper-reed/issues/new/choose) 或 Pull Request。目前最有帮助的是具体的界面问题、真实邮件工作流，以及带证据的技术路线比较。大型实现请先讨论，避免建立在尚未确认的方案上。
 
 本地基础检查需要 Python 3.10+ 和 Node.js 22+，无需安装 npm 依赖：
 

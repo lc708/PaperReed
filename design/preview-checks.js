@@ -31,7 +31,7 @@ check('Search filters and empty state', () => {
   $('search-attachment').checked = true; $('search-attachment').dispatchEvent(new Event('change'));
   ok(searchItems().length === 2); input('search-account', 'personal', 'change'); ok(searchItems().length === 0);
   ok($('search-results').textContent.includes('没有找到')); click('[data-act="search-clear"]');
-  ok(S.query === '' && S.searchAccount === 'all' && !S.hasAttachment);
+  ok(S.query === '' && S.account === 'all' && !S.hasAttachment);
 });
 check('Search → thread → search preserves query', () => {
   input('search-query', '校样'); click('[data-act="open"][data-id="2"]');
@@ -116,4 +116,71 @@ check('Spam and trash restore preserve original folder on undo',()=>{for(const [
 check('Search checkbox actions stay bound after typing',()=>{go('search');input('search-query','校样');const c=document.querySelector('[data-mail-check="2"]');c.checked=true;c.dispatchEvent(new Event('change'));ok(S.checked.has(2));ok(document.querySelector('[data-act="bulk-label"]'))});
 console.log('V7 RESULT '+checkResults.filter(r=>r.passed).length+'/'+checkResults.length);S.account='all';S.category='all';S.unreadOnly=false;go('inbox');$('toast').hidden=true;
 
-check('Search excludes discarded mail until explicitly included',()=>{go('search');S.hasAttachment=false;S.searchAccount='all';input('search-query','本周推广');ok(searchItems().length===0);$('search-discarded').checked=true;$('search-discarded').dispatchEvent(new Event('change'));ok(searchItems().length===1);click('[data-act="search-clear"]');ok(!S.includeDiscarded)});
+check('Search excludes discarded mail until explicitly included',()=>{go('search');S.hasAttachment=false;S.account='all';input('search-query','本周推广');ok(searchItems().length===0);$('search-discarded').checked=true;$('search-discarded').dispatchEvent(new Event('change'));ok(searchItems().length===1);click('[data-act="search-clear"]');ok(!S.includeDiscarded)});
+
+check('Checked mail owns archive shortcuts and commands', () => {
+ S.account='all';S.category='all';S.unreadOnly=false;go('inbox');S.selected=2;
+ const untouched={folder:getMail(2).folder,pinned:getMail(2).pinned};
+ for(const id of [3,4]){const box=document.querySelector(`[data-mail-check="${id}"]`);box.checked=true;box.dispatchEvent(new Event('change'))}
+ ok(document.activeElement.matches('[data-mail-check="4"]'),'Keep the actual checkbox focus');
+ for(const key of ['p','h','r'])document.dispatchEvent(new KeyboardEvent('keydown',{key,bubbles:true}));
+ ok(S.page==='inbox'&&$('popover').hidden&&getMail(2).pinned===untouched.pinned);
+ openCommands();ok($('command-results').textContent.includes('归档选中的 2 封邮件'));
+ ok(!$('command-results').querySelector('[data-act="reply"]'));closeModal();
+ ok(document.activeElement.matches('[data-mail-check="4"]'),'Keep the actual checkbox focus');
+ document.dispatchEvent(new KeyboardEvent('keydown',{key:'e',bubbles:true}));
+ ok(getMail(3).folder==='archive'&&getMail(4).folder==='archive');
+ ok(getMail(2).folder===untouched.folder,'Unchecked mail was changed');click('[data-act="undo"]');
+});
+check('Drafts reopen directly with complete content', () => {
+ newComposer();input('compose-to','maya@example.com');input('compose-subject','完整草稿');
+ click('[data-act="toggle-cc"]');input('compose-cc','review@example.com');
+ const body='第一行\n\n\n第二段\n尾行';input('compose-body',body);
+ S.composer.files=[{name:'校样.pdf',size:'1 MB'}];saveComposer();const id=S.composer.id;
+ go('drafts');click(`[data-act="open"][data-id="${id}"]`);
+ ok(S.page==='compose'&&$('compose-cc').value==='review@example.com'&&!$('cc-field').hidden);
+ ok($('compose-body').value===body&&S.composer.files[0].name==='校样.pdf');
+ click('[data-act="remove-file"][data-id="0"]');go('drafts');openThread(id);ok(!S.composer.files.length);
+});
+check('Mailbox scope stays on the page and search uses that scope', () => {
+ for(const page of ['compose','thread','accounts','agents','organize']){
+  preview(page);ok($('scope').hidden,'Unrelated scope control on '+page);
+  act('scope-set','personal');ok(S.page===page,'Scope left '+page);
+ }
+ go('search');ok(!$('scope').hidden);input('search-query','');
+ input('search-account','work','change');ok(S.account==='work'&&S.page==='search');
+ ok(searchItems().every(m=>m.account==='work')&&$('scope').textContent.includes('工作邮箱'));
+ act('scope-set','archive');ok($('search-account').value==='archive'&&S.page==='search');
+ click('[data-act="search-clear"]');ok(S.account==='all'&&$('search-account').value==='all');
+});
+check('Reply and custom handoff task survive Agent setup', () => {
+ S.cliInstalled=true;S.agent='codex';S.agentConnected={};S.enabled=true;S.permissions.read=true;S.agentAccounts.work=true;
+ S.account='all';S.selected=2;go('thread');reply();input('reply-text','保留这份回复草稿');
+ click('#reply-editor [data-act="agent-entry"]');input('handoff-task','只校对这份回复，保留 <称呼> & 换行。');
+ click('[data-act="handoff-config"]');click('[data-act="agent-connect"]');click('[data-act="agent-simulate"]');
+ ok(S.page==='thread'&&!$('reply-editor').hidden&&$('reply-text').value==='保留这份回复草稿');
+ ok(agentContext().label==='当前会话与回复草稿');ok($('handoff-task').value==='只校对这份回复，保留 <称呼> & 换行。');closeModal();
+});
+check('Snooze has no unsupported selection and search can hand off results', () => {
+ go('snooze');ok(!document.querySelector('[data-mail-check]'));ok(document.querySelector('[data-act="restore"]'));
+ go('search');S.query='校样';S.hasAttachment=false;render();
+ ok(!S.checked.size&&document.querySelector('.screen-head [data-act="agent-entry"]'));
+ click('.screen-head [data-act="agent-entry"]');ok($('modal').textContent.includes('当前列表'));closeModal();
+});
+check('Search is reachable and named in the product at every width', () => {
+ go('inbox');const search=document.querySelector('.view-tabs .search-open');
+ ok(search.getBoundingClientRect().width>0&&search.getAttribute('aria-label')==='搜索邮件');search.click();ok(S.page==='search');
+ go('accounts');ok(document.querySelector('#mail-nav [data-act="search-open"]'));
+ const command=document.querySelector('.command-shortcut');ok(command.getBoundingClientRect().width>0);command.click();
+ click('#command-results [data-act="command-search"]');ok(S.page==='search');
+});
+check('Long page titles avoid actions and list labels remain visible', () => {
+ const label=labels[0],name=label.name;label.name='这是二十四字符长度的中文项目标签名称布局测试';
+ S.labelId=label.id;S.account='all';go('label');
+ const h=document.querySelector('.title-line h1').getBoundingClientRect(),a=document.querySelector('.list-actions').getBoundingClientRect();
+ ok(h.right<=a.left+1||h.bottom<=a.top+1||a.bottom<=h.top+1,'Title overlaps actions');
+ label.name=name;go('inbox');ok(document.querySelector('.row-tag').getBoundingClientRect().width>0);
+ ok($('screen').scrollWidth<=$('screen').clientWidth+1);
+});
+console.log('COUNCIL RESULT '+checkResults.filter(r=>r.passed).length+'/'+checkResults.length);
+S.account='all';S.category='all';S.unreadOnly=false;go('inbox');$('toast').hidden=true;

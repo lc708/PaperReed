@@ -135,7 +135,7 @@ check('Checked mail owns archive shortcuts and commands', () => {
 check('Drafts reopen directly with complete content', () => {
  newComposer();input('compose-to','maya@example.com');input('compose-subject','完整草稿');
  click('[data-act="toggle-cc"]');input('compose-cc','review@example.com');
- const body='第一行\n\n\n第二段\n尾行';input('compose-body',body);
+ const body='\n\n第一行\n\n\n第二段\n尾行\n';input('compose-body',body);
  S.composer.files=[{name:'校样.pdf',size:'1 MB'}];saveComposer();const id=S.composer.id;
  go('drafts');click(`[data-act="open"][data-id="${id}"]`);
  ok(S.page==='compose'&&$('compose-cc').value==='review@example.com'&&!$('cc-field').hidden);
@@ -155,11 +155,11 @@ check('Mailbox scope stays on the page and search uses that scope', () => {
 });
 check('Reply and custom handoff task survive Agent setup', () => {
  S.cliInstalled=true;S.agent='codex';S.agentConnected={};S.enabled=true;S.permissions.read=true;S.agentAccounts.work=true;
- S.account='all';S.selected=2;go('thread');reply();input('reply-text','保留这份回复草稿');
- click('#reply-editor [data-act="agent-entry"]');input('handoff-task','只校对这份回复，保留 <称呼> & 换行。');
+ S.account='all';S.selected=2;go('thread');reply();input('reply-text','\n保留这份回复草稿\n');
+ click('#reply-editor [data-act="agent-entry"]');input('handoff-task','\n只校对这份回复，保留 <称呼> & 换行。\n');
  click('[data-act="handoff-config"]');click('[data-act="agent-connect"]');click('[data-act="agent-simulate"]');
- ok(S.page==='thread'&&!$('reply-editor').hidden&&$('reply-text').value==='保留这份回复草稿');
- ok(agentContext().label==='当前会话与回复草稿');ok($('handoff-task').value==='只校对这份回复，保留 <称呼> & 换行。');closeModal();
+ ok(S.page==='thread'&&!$('reply-editor').hidden&&$('reply-text').value==='\n保留这份回复草稿\n');
+ ok(agentContext().label==='当前会话与回复草稿');ok($('handoff-task').value==='\n只校对这份回复，保留 <称呼> & 换行。\n');closeModal();
 });
 check('Snooze has no unsupported selection and search can hand off results', () => {
  go('snooze');ok(!document.querySelector('[data-mail-check]'));ok(document.querySelector('[data-act="restore"]'));

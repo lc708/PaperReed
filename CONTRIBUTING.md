@@ -21,7 +21,7 @@ Design feedback, workflow examples, reproducible research and small prototype im
 
 Edit the canonical prototype, regenerate standalone pages, run the checks, and manually inspect affected UI flows. Explain the problem, behavior change, validation and limitations in your PR. Keep unrelated changes separate.
 
-源码可行性实验需另外准备上游快照，见 [research/README.md](research/README.md)。它们不属于默认 CI。现有 25 项原型交互检查也不属于静态 CI，不能把语法检查通过写成全部交互通过。
+源码可行性实验需另外准备上游快照，见 [research/README.md](research/README.md)。它们不属于默认 CI。现有 32 项原型交互检查也不属于静态 CI，不能把语法检查通过写成全部交互通过。
 
 ## Contribution terms / 贡献约定
 
